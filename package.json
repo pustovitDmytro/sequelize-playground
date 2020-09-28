@@ -1,7 +1,7 @@
 {
-  "name": "npm-boilerplate",
+  "name": "sequelize-playground",
   "version": "0.0.1",
-  "description": "boilerplate for creating npm packages",
+  "description": "demonstrates list of usefull scripts for common sequelize issues",
   "main": "./lib",
   "scripts": {
     "build": "babel src --out-dir ./lib",
@@ -13,18 +13,19 @@
     "test:coverage": "MODE=test nyc mocha --config .mocharc.json tests/**/*test.js",
     "coverage-check": "MODE=test nyc check-coverage",
     "test": "npm run test:lint && npm run test:security && npm run test:coverage",
-    "semantic-release": "semantic-release"
+    "migrate": "sequelize db:migrate --config etc/db.js",
+    "cleanup": "sequelize db:migrate:undo:all --config etc/db.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pustovitDmytro/npm-boilerplate.git"
+    "url": "https://github.com/pustovitDmytro/sequelize-playground.git"
   },
   "author": "Dmytro Pustovit",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pustovitDmytro/npm-boilerplate/issues"
+    "url": "https://github.com/pustovitDmytro/sequelize-playground/issues"
   },
-  "homepage": "https://github.com/pustovitDmytro/npm-boilerplate#readme",
+  "homepage": "https://github.com/pustovitDmytro/sequelize-playground#readme",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
@@ -60,5 +61,11 @@
     "nyc": "^14.1.1",
     "semantic-release": "^15.13.19",
     "uuid": "^3.3.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
   }
 }

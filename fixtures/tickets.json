@@ -1,0 +1,37 @@
+[
+    {
+        "id": "aff433e7-7373-54d8-a57c-99e11f922506",
+        "status": "pending",
+        "owner": null
+    },
+    {
+        "id": "88359efd-d746-5396-8d19-da62cffc57f6",
+        "status": "available",
+        "owner": null
+    },
+    {
+        "id": "3532cd23-11dc-5b51-a201-e54a81ed891e",
+        "status": "available",
+        "owner": null
+    },
+    {
+        "id": "9289b697-5345-5f76-9b13-9db1e433bfb9",
+        "status": "available",
+        "owner": null
+    },
+    {
+        "id": "41668e1b-18ce-5d56-9523-6095a2aaff4b",
+        "status": "booked",
+        "owner": "Herbert Stone"
+    },
+    {
+        "id": "df35cf74-4d80-5516-b5cf-00a649b58a10",
+        "status": "bought",
+        "owner": "Jim Spencer"
+    },
+    {
+        "id": "e14dee78-9981-596c-82a2-875c913dce3d",
+        "status": "returned",
+        "owner": "Gary Richards"
+    }
+]

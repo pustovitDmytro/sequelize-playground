@@ -1,9 +1,7 @@
-package-lock.json
 node_modules
-etc/*.js
-etc/*.json
 lib/*
 coverage/*
 tmp/*
 logs/*
 *.log
+.env

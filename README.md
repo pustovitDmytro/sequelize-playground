@@ -1,11 +1,6 @@
-# npm-boilerplate
-**npm-boilerplate** boilerplate for creating npm packages.
+# sequelize-playground
+**sequelize-playground** demonstrates list of usefull scripts for common sequelize issues
 
-[![Version][badge-vers]][npm]
-[![Dependencies][badge-deps]][npm]
-[![Vulnerabilities][badge-vuln]](https://snyk.io/)
-[![Build Status][badge-tests]][travis]
-[![Coverage Status][badge-coverage]](https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master)
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -14,8 +9,12 @@
   - [Usage](#usage)
   - [Contribute](#contribute)
 
+## Motivation
+demonstrates list of usefull scripts for common sequelize issues
+
+
 ## Requirements
-To use library you need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com) installed in your machine:
+To use examples you need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com) installed in your machine:
 
 * node `6.0+`
 * npm `3.0+`
@@ -25,13 +24,10 @@ To use library you need to have [node](https://nodejs.org) and [npm](https://www
 To install the library run following command
 
 ```bash
-  npm i --save npm-boilerplate
-```
-
-## Usage
-
-```javascript
-
+  git clone git@github.com:pustovitDmytro/sequelize-playground.git
+  cd sequelize-playground
+  npm ci
+  npm run test:mocha
 ```
 
 ## Contribute
@@ -56,13 +52,5 @@ The Tag is one of the following:
 The message summary should be a one-sentence description of the change. The issue number should be mentioned at the end.
 
 
-[npm]: https://www.npmjs.com/package/npm-boilerplate
-[github]: https://github.com/pustovitDmytro/npm-boilerplate
-[travis]: https://travis-ci.org/pustovitDmytro/npm-boilerplate
-[coveralls]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
-[badge-deps]: https://img.shields.io/david/pustovitDmytro/npm-boilerplate.svg
-[badge-tests]: https://img.shields.io/travis/pustovitDmytro/npm-boilerplate.svg
-[badge-vuln]: https://img.shields.io/snyk/vulnerabilities/npm/npm-boilerplate.svg?style=popout
-[badge-vers]: https://img.shields.io/npm/v/npm-boilerplate.svg
-[badge-lic]: https://img.shields.io/github/license/pustovitDmytro/npm-boilerplate.svg
-[badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/npm-boilerplate/badge.svg?branch=master
+[npm]: https://www.npmjs.com/package/sequelize-playground
+[github]: https://github.com/pustovitDmytro/sequelize-playground
