@@ -4,6 +4,7 @@
 [![License][badge-lic]][github]
 
 ## Table of Contents
+  - [Motivation](#motivation)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -54,3 +55,4 @@ The message summary should be a one-sentence description of the change. The issu
 
 [npm]: https://www.npmjs.com/package/sequelize-playground
 [github]: https://github.com/pustovitDmytro/sequelize-playground
+[badge-lic]: https://img.shields.io/github/license/pustovitDmytro/sequelize-playground.svg
