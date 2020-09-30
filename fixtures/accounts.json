@@ -1,0 +1,14 @@
+[
+    {
+        "id": "a7c89996-6087-5ee8-aa4f-8befa32191e7",
+        "balance": 5,
+        "limit": -4,
+        "currency": "USD",
+        "owner": "Sophia Morton"
+    },
+    {
+        "id": "5c94d475-c7f2-5974-987d-ce8eddcf708f",
+        "currency": "EUR",
+        "owner": "Cynthia Barrett"
+    }
+]

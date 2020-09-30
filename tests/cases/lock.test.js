@@ -58,7 +58,7 @@ test('Negative: handle in application level', async function () {
 
     await Promise.all(users.map(user => ticket.book(user)));
     assert.equal(ticket.status, 'booked');
-    assert.equal(ticket.owner, users[users.length - 1]);
+    assert.oneOf(ticket.owner, users);
 });
 
 test('Positive: handle in db level', async function () {
