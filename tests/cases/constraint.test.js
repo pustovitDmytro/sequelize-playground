@@ -16,10 +16,15 @@ before(async () => {
     Account = sequelize.model('Account');
 
     Account.prototype.debit = async function () {
+        const transaction = await sequelize.transaction();
+
         try {
-            await this.decrement('balance');
+            await this.decrement('balance', { transaction });
             console.log(`current balance: ${this.balance}`);
+            await transaction.commit();
         } catch (error) {
+            await transaction.rollback();
+
             if (error instanceof Sequelize.DatabaseError) {
                 if (error.original.constraint === 'accounts_blance_check') throw new Error('Balance exceeded limit');
             }
@@ -31,9 +36,10 @@ before(async () => {
 test('Positive: check constraint relative to db field', async function () {
     const  account = accounts.find(a => a.limit < 0);
     const left = account.balance - account.limit;
+    const attempts = left * 5;
 
     try {
-        await Promise.all(Array.from(new Array(left * 5)).map(() => account.debit()));
+        await Promise.all(Array.from(new Array(attempts)).map(() => account.debit()));
         assert.fail('expected to fail');
     } catch (error) {
         assert.equal(error.message, 'Balance exceeded limit');
