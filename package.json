@@ -4,8 +4,6 @@
   "description": "demonstrates list of usefull scripts for common sequelize issues",
   "main": "./lib",
   "scripts": {
-    "build": "babel src --out-dir ./lib",
-    "prepare": "npm run build",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "test:security": "npm audit",
     "test:lint": "eslint src",

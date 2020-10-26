@@ -10,5 +10,12 @@
         "id": "5c94d475-c7f2-5974-987d-ce8eddcf708f",
         "currency": "EUR",
         "owner": "Cynthia Barrett"
+    },
+    {
+        "id": "d169dbeb-8b45-5878-8128-e10c1db92ed1",
+        "currency": "GBR",
+        "balance": 100,
+        "limit": 0,
+        "owner": "Jerome Schneider"
     }
 ]

@@ -32,7 +32,7 @@ module.exports = {
     },
 
     down : async (queryInterface) => {
-        await queryInterface.dropTable('Accounts');
         await queryInterface.removeConstraint('Accounts', 'accounts_blance_check');
+        await queryInterface.dropTable('Accounts');
     }
 };
