@@ -1,4 +1,4 @@
-const params = [ {
+const sortByArrayParams = [ {
     name : 'anyarray',
     type : 'anyarray'
 }, {
@@ -6,11 +6,20 @@ const params = [ {
     type : 'anyelement'
 } ];
 
+const balanceSortParams = [ {
+    name : 'balance',
+    type : 'integer'
+}, {
+    name : 'lim',
+    type : 'integer'
+} ];
+
+
 module.exports = {
     up : async (queryInterface) => {
         await queryInterface.createFunction(
             'sortByArray',
-            params,
+            sortByArrayParams,
             'INT',
             'plpgsql',
             `RETURN(
@@ -22,18 +31,17 @@ module.exports = {
             );
             `
         );
-        // [limit, limit+10) DESC
-        // [limit+10, limit+100] DESC
-        // await queryInterface.createFunction(
-        //     'balanceSort',
-        //     params,
-        //     'INT',
-        //     'plpgsql',
-        //     "RETURN date_trunc('day', date at time zone '0' + INTERVAL '1 day');"
-        // );
+        await queryInterface.createFunction(
+            'balanceSort',
+            balanceSortParams,
+            'INT',
+            'plpgsql',
+            'RETURN balance - lim;'
+        );
     },
 
     down : async (queryInterface) => {
-        await queryInterface.dropFunction('sortByArray', params);
+        await queryInterface.dropFunction('sortByArray', sortByArrayParams);
+        await queryInterface.dropFunction('balanceSort', balanceSortParams);
     }
 };

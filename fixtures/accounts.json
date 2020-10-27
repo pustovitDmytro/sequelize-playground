@@ -17,5 +17,12 @@
         "balance": 100,
         "limit": 0,
         "owner": "Jerome Schneider"
+    },
+    {
+        "id": "3d738d06-2691-54e0-a09e-97db76d66cbc",
+        "currency": "EUR",
+        "balance": -20,
+        "limit": -1000,
+        "owner": "Sadie Alvarado"
     }
 ]
