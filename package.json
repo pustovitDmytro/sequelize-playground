@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "myrmidon": "^1.4.3",
     "pg": "^8.3.3",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"

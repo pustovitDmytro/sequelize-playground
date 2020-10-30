@@ -1,5 +1,5 @@
 import fse from 'fs-extra';
-import { tickets, accounts } from '../fixtures';
+import { tickets, accounts, planes } from '../fixtures';
 import { tmpFolder } from './constants';
 import sequelize, { Sequelize } from './sequelize';
 
@@ -12,11 +12,28 @@ export default class Test {
     }
 
     async setTickets() {
+        const Plane = sequelize.define('Plane', {
+            id   : { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, primaryKey: true },
+            name : { type: Sequelize.STRING, allowNull: false },
+            type : { type: Sequelize.STRING, allowNull: true }
+        }, { timestamps: false });
+
         const Ticket = sequelize.define('Ticket', {
             id     : { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, primaryKey: true },
             status : { type: Sequelize.ENUM('available', 'booked', 'bought', 'returned', 'pending'), allowNull: false, defaultValue: 'pending' },
-            owner  : { type: Sequelize.STRING, allowNull: true }
+            place  : { type: Sequelize.INTEGER, allowNull: false },
+            plane  : {
+                type       : Sequelize.UUID,
+                allowNull  : false,
+                references : {
+                    model : 'Plane',
+                    key   : 'id'
+                }
+            },
+            owner : { type: Sequelize.STRING, allowNull: true }
         }, { timestamps: false });
+
+        await Plane.bulkCreate(planes);
 
         return Ticket.bulkCreate(tickets);
     }
@@ -37,7 +54,8 @@ export default class Test {
     async cleanup() {
         const tables = [
             'Tickets',
-            'Accounts'
+            'Accounts',
+            'Planes'
         ];
 
         for (const table of tables) {
@@ -47,5 +65,8 @@ export default class Test {
 }
 
 export {
-    tmpFolder
+    tmpFolder,
+    tickets,
+    accounts,
+    planes
 };

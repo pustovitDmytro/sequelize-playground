@@ -1,0 +1,12 @@
+[
+    {
+        "id": "7b58879d-f565-5e7c-bb9f-ddbb123faf0a",
+        "type": "SOFT_CHECK_SINGLE_TICKET",
+        "name": "Holdlamis Flashpoint"
+    },
+    {
+        "id": "ebc763ae-ff1a-5808-b341-25f1b0975737",
+        "type": "HARD_CHECK_SINGLE_TICKET",
+        "name": "Huxham Pennicott"
+    }
+]
