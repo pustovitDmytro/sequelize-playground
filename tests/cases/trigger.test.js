@@ -1,12 +1,12 @@
 import { assert } from 'chai';
 import Sequelize from 'sequelize';
-import { retry } from 'myrmidon';
+import { retry, pause } from 'myrmidon';
 import sequelize from '../sequelize';
 import Test, { planes } from '../Test';
 
 const factory = new Test();
 
-suite.only('Sequelize trigger on row create');
+suite('Sequelize trigger on row create');
 let Ticket;
 
 before(async () => {
@@ -51,8 +51,8 @@ before(async () => {
                         }
                     }),
                 {
-                    retry   : 3,
-                    timeout : 500
+                    retry   : 5,
+                    timeout : { min: 100, max: 500 }
                 }
             );
 
@@ -77,6 +77,7 @@ before(async () => {
                 place
             }, { transaction });
 
+            await pause(250);
             await transaction.commit();
 
             return ticket;
@@ -87,31 +88,50 @@ before(async () => {
     };
 });
 
-test('Negative: handle in application level', async function () {
+test('Negative: handle in application level without retry', async function () {
     const attempts = 3;
     const softPlane = planes.find(p => p.type === 'SOFT_CHECK_SINGLE_TICKET');
 
     const results = await Promise.all(
         Array.from(new Array(attempts))
-            .map(() => Ticket.createTicket(softPlane.id, 101))
+            .map(() => Ticket._createTicket(
+                softPlane.id,
+                101,
+                Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+            ))
     );
     const passed = results.filter(r => r.status);
 
-    assert.lengthOf(passed, 1);
+    assert.lengthOf(passed, 3);
+});
+
+test('Negative: handle in db level without retry', async function () {
+    const attempts = 3;
+    const hardPlane = planes.find(p => p.type === 'HARD_CHECK_SINGLE_TICKET');
+    const hardResults = await Promise.all([
+        ...Array.from(new Array(attempts))
+            .map(() => Ticket._createTicket(
+                hardPlane.id,
+                102,
+                Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+            ))
+    ]);
+    const hardPassed = hardResults.filter(r => r.status);
+
+    assert.lengthOf(hardPassed, 3);
 });
 
 test('Positive: add normal tickets for soft app check', async function () {
-    const attempts = 3;
+    const attempts = 5;
     const softPlane = planes.find(p => p.type === 'SOFT_CHECK_SINGLE_TICKET');
-    const places = Array.from(new Array(attempts)).map((item, index) => 200 + index);
+    const places = Array.from(new Array(attempts)).map((item, index) => 150 + index);
     const softResults = await Promise.all(
         places.map(place => Ticket.createTicket(softPlane.id, place))
     );
 
     const softPassed = softResults.filter(r => r.status);
 
-    assert.lengthOf(softPassed, 3);
-
+    assert.lengthOf(softPassed, attempts);
 
     const tickets = await Ticket.findAll({
         where : {
@@ -129,7 +149,7 @@ test('Positive: add normal tickets for hard db check', async function () {
 
     const hardResults = await Promise.all([
         ...Array.from(new Array(attempts))
-            .map((item, index) => Ticket.createTicket(hardPlane.id, 150 + index))
+            .map((item, index) => Ticket.createTicket(hardPlane.id, 180 + index))
     ]);
     const hardPassed = hardResults.filter(r => r.status);
 
@@ -142,9 +162,31 @@ test('Positive: db trigger', async function () {
 
     const results = await Promise.all(
         Array.from(new Array(attempts))
-            .map(() => Ticket.createTicket(plane.id, 101))
+            .map(() => Ticket.createTicket(plane.id, 201))
     );
     const passed = results.filter(r => r.status);
 
     assert.lengthOf(passed, 1);
+});
+
+test('Positive: app check', async function () {
+    const attempts = 3;
+    const softPlane = planes.find(p => p.type === 'SOFT_CHECK_SINGLE_TICKET');
+    const places = Array.from(new Array(attempts)).map(() => 202);
+    const softResults = await Promise.all(
+        places.map(place => Ticket.createTicket(softPlane.id, place))
+    );
+
+    const softPassed = softResults.filter(r => r.status);
+
+    assert.lengthOf(softPassed, 1);
+
+    const tickets = await Ticket.findAll({
+        where : {
+            plane : softPlane.id,
+            place : 202
+        }
+    });
+
+    assert.lengthOf(tickets, 1);
 });
