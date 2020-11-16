@@ -4,25 +4,30 @@
         "balance": 5,
         "limit": -4,
         "currency": "USD",
-        "owner": "Sophia Morton"
+        "owner": "Sophia Morton",
+        "fulltext_trgm": "east nor left river bone continent garage drop sign pen limited helpful bell famous first compare there replace seven fish radio difference valuable full"
     },
     {
         "id": "5c94d475-c7f2-5974-987d-ce8eddcf708f",
         "currency": "EUR",
-        "owner": "Cynthia Barrett"
+        "owner": "Cynthia Barrett",
+        "fulltext_trgm": "frighten born concerned origin pool magic neck help beautiful shells although subject thing planning language show congress sit hand business border important write chapter"
     },
     {
         "id": "d169dbeb-8b45-5878-8128-e10c1db92ed1",
         "currency": "GBR",
         "balance": 100,
         "limit": 0,
-        "owner": "Jerome Schneider"
+        "owner": "Jerome Schneider",
+        "fulltext_trgm": "information but please dawn twenty watch real interior get two save branch buffalo lady curious highway naturally becoming harbor plan came growth explain sense"
     },
     {
         "id": "3d738d06-2691-54e0-a09e-97db76d66cbc",
         "currency": "EUR",
         "balance": -20,
         "limit": -1000,
-        "owner": "Sadie Alvarado"
+        "owner": "Sadie Alvarado",
+        "fulltext_tsmatch": "clothing frame pick ice leaving slave ago day lady area radio star which activity struck search swing knew after select honor ourselves globe drop",
+        "fulltext_trgm": "past show cost never current mad barn court pond wide those clothes ought finest purple graph comfortable to compare listen clean box mother older"
     }
 ]

@@ -40,11 +40,13 @@ export default class Test {
 
     async setAccounts() {
         const Account = sequelize.define('Account', {
-            id       : { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, primaryKey: true },
-            balance  : { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
-            limit    : { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
-            currency : { type: Sequelize.ENUM('USD', 'EUR', 'GBR'), allowNull: false },
-            owner    : { type: Sequelize.STRING, allowNull: true }
+            id                 : { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, primaryKey: true },
+            balance            : { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
+            limit              : { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
+            currency           : { type: Sequelize.ENUM('USD', 'EUR', 'GBR'), allowNull: false },
+            owner              : { type: Sequelize.STRING, allowNull: true },
+            'fulltext_tsmatch' : { type: Sequelize.TEXT, allowNull: true },
+            'fulltext_trgm'    : { type: Sequelize.TEXT, allowNull: true }
         }, { timestamps: false });
 
 
